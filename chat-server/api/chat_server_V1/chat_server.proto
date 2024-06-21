@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package chat_server_v1;
+
+// import "google/protobuf/timestamp.proto";
+// import "google/protobuf/empty.proto";
+// import "google/protobuf/wrappers.proto";
+
+option go_package = "github.com/DmitriiKumacnev/microservices_course/chat_server/pkg/chat_server_v1;chat_server_v1";
+
+service ChatServerV1 {
+
+}
