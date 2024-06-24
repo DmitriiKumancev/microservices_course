@@ -2,12 +2,36 @@ syntax = "proto3";
 
 package chat_server_v1;
 
-// import "google/protobuf/timestamp.proto";
-// import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
 // import "google/protobuf/wrappers.proto";
 
 option go_package = "github.com/DmitriiKumacnev/microservices_course/chat_server/pkg/chat_server_v1;chat_server_v1";
 
 service ChatServerV1 {
-
+    rpc Create(CreateChatRequest) returns (CreateChatResponse);
+    rpc Delete(DeleteChatRequest) returns (google.protobuf.Empty);
+    rpc SendMessage(SendMessageRequest) returns (google.protobuf.Empty);
 }
+
+//  запрос на создание нового чата
+message CreateChatRequest {
+    repeated string usernames = 1; // список пользователей
+}
+
+// ответ на запрос на создание нового чата
+message CreateChatResponse {
+    int64 id = 1; // id созданного чата
+}
+
+message DeleteChatRequest {
+    int64 id = 1; // id чата
+}
+
+// Запрос на отправку сообщения 
+message SendMessageRequest {
+    string from = 1; // имя отправителя
+    string text = 2; // текст сообщения
+    google.protobuf.Timestamp timestamp = 3; // время отправки
+}
+
